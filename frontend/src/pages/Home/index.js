@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Auth from '../../auth'
-import { Link } from 'react-router-dom'
 import { api } from '../../services/api'
 import { Container } from './style'
 import HomeUser from './HomeUser'

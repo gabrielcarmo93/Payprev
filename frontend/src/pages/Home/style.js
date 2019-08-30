@@ -8,6 +8,5 @@ export const Container = styled.div`
 	flex-wrap: wrap !important;
 	flex-direction: row !important;
 	max-width: 980px;
-	background: #fff;
 	margin: 0 auto;
 `
