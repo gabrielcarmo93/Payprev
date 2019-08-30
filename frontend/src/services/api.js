@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const api = axios.create({
-	baseURL: 'http://localhost:5000/'
+	baseURL: 'http://10.21.0.141:5000/'
 	// baseURL: 'https://polar-eyrie-66111.herokuapp.com'
 })
 

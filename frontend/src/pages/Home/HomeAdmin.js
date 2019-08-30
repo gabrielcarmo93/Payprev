@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { api, GitApi } from '../../services/api'
-import { Input, Icon } from 'semantic-ui-react'
+import { Input, Icon, Message, Button } from 'semantic-ui-react'
 
 class HomeAdmin extends Component {
 	state = {
@@ -11,12 +11,32 @@ class HomeAdmin extends Component {
 		GitApi.get(this.state.inputSearch)
 			.then((response) =>{
 				this.setState({dev: response.data})
-				console.log(response)
+				// console.log(response)
 			}).catch((error) => {
-				console.log(error.response.statusText)
-				this.setState({dev: null})
+				// alert(error.response.statusText)
+				this.setState({dev: ''})
 			})
 	}
+
+	async addDev() {
+
+		const dev = {
+			login: this.state.dev.login,
+			name: this.state.dev.name,
+			bio: this.state.dev.bio,
+			location: this.state.dev.location,
+			html_url: this.state.dev.html_url
+		}
+
+		api.post('/dev', dev)
+			.then((response) => {
+				alert('Adicionado com sucesso')
+				// console.log(response)
+			}).catch((error) => {
+				console.log(error.response)
+			})
+	}
+
 	render() {
 		return (
 			<div style={{height: '100%', width: '100%', padding: '50px 20px'}}>
@@ -31,29 +51,44 @@ class HomeAdmin extends Component {
 				/>
 				<div style={{display: 'flex', width: '100%', justifyContent: 'center', margin: '20px 0'}}>
 					{
-						this.state.dev ?
-							<div className="ui card">
-								<div className="image">
-									<img src={this.state.dev.avatar_url} alt={this.state.dev.name} width={174} height={174} style={{width: '174px !important'}}/>
-								</div>
-								<div className="content">
-									<a className="header">{this.state.dev.name}</a>
-									<div className="meta">
-										<span className="date">{this.state.dev.location}</span>
+						this.state.inputSearch.length > 0 ?
+							this.state.dev ?
+								<div style={{display: 'flex', flexDirection: 'column'}}>
+									<div className="ui card">
+										<div className="image">
+											<img src={this.state.dev.avatar_url} alt={this.state.dev.name}/>
+										</div>
+										<div className="content">
+											<a className="header">{this.state.dev.name}</a>
+											<div className="meta">
+												<span className="date">{this.state.dev.location}</span>
+											</div>
+											<div className="description">
+												{this.state.dev.company}
+											</div>
+										</div>
+										<div className="extra content">
+											<a title="Repositórios">
+											<i className="folder open icon"></i>
+												{this.state.dev.public_repos}
+											</a>
+										</div>
+
 									</div>
-									<div claclassNamess="description">
-										{this.state.dev.company}
-									</div>
+									<Button
+										style={{background: "white"}}
+										title="Adicionar"
+										onClick={() => this.addDev()}
+									>
+										<Icon
+											name="plus"
+										/>
+									</Button>
 								</div>
-									<div className="extra content">
-								<a>
-								<i className="folder open icon"></i>
-									{this.state.dev.public_repos}
-								</a>
-								</div>
-							</div>
+							:
+								<span>Nenhum usuário encontrado</span>
 						:
-							<span>Nenhum usuário encontrado</span>
+							''
 					}
 				</div>
 			</div>

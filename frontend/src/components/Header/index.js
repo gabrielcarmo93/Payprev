@@ -27,7 +27,12 @@ class Header extends Component {
 	render() {
 		return (
 			<Container style={{height: '50px', background: '#34304b', color: '#ccc'}}>
-				<h1><Icon name="money bill alternate" style={{margin: '0 15px 0 0'}}/>Payprev</h1>
+				<Link
+					to="/"
+					style={{color:"#ccc"}}
+				>
+					<h1><Icon name="money bill alternate" style={{margin: '0 15px 0 0'}}/>Payprev</h1>
+				</Link>
 
 				<div>
 					{this.state.user.email}

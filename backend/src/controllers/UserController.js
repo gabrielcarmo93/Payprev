@@ -15,8 +15,6 @@ module.exports = {
         const salt = bcrypt.genSaltSync(10)
         const password = bcrypt.hashSync(req.body.password, salt)
 
-        console.log(req.body)
-
         if(req.body.password.length >= 6){
             try {
                 const user = await User.create({
