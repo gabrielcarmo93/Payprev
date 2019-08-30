@@ -32,22 +32,22 @@ class HomeAdmin extends Component {
 				<div style={{display: 'flex', width: '100%', justifyContent: 'center', margin: '20px 0'}}>
 					{
 						this.state.dev ?
-							<div class="ui card">
-								<div class="image">
+							<div className="ui card">
+								<div className="image">
 									<img src={this.state.dev.avatar_url} alt={this.state.dev.name} width={174} height={174} style={{width: '174px !important'}}/>
 								</div>
-								<div class="content">
-									<a class="header">{this.state.dev.name}</a>
-									<div class="meta">
-										<span class="date">{this.state.dev.location}</span>
+								<div className="content">
+									<a className="header">{this.state.dev.name}</a>
+									<div className="meta">
+										<span className="date">{this.state.dev.location}</span>
 									</div>
-									<div class="description">
+									<div claclassNamess="description">
 										{this.state.dev.company}
 									</div>
 								</div>
-									<div class="extra content">
+									<div className="extra content">
 								<a>
-								<i class="folder open icon"></i>
+								<i className="folder open icon"></i>
 									{this.state.dev.public_repos}
 								</a>
 								</div>
