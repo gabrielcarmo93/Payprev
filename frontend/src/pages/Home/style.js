@@ -9,4 +9,8 @@ export const Container = styled.div`
 	flex-direction: row !important;
 	max-width: 980px;
 	margin: 0 auto;
+
+	.ui.simple.dropdown {
+		height: 20px
+	}
 `

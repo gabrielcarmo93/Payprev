@@ -24,14 +24,14 @@ module.exports = {
                 	return res.status(400).send({ message: 'Lista já cadastrada'}).end()
 				}
 			}).catch((error)=>{
-				console.log(error)
+				return res.status(500).send('Erro ao gravar lista')
 			})
 	},
 
 	async listById(req, res) {
 		const { id } = req.params
 
-		const list = List.findById(id)
+		const list = await List.findById(id)
 
 		return res.json(list)
 	},
@@ -46,15 +46,25 @@ module.exports = {
 
 	async putUserInList(req, res) {
 		const { id, dev } = req.body
-		console.log(dev)
 
-		/*const list = List.findOneAndUpdate({'_id': id}, { $push: { devs: dev  } }, function(err, doc) {
+		const list = List.findOneAndUpdate({'_id': id}, { $addToSet: { devs: dev  } }, function(err, doc) {
 			if(err) {
-				console.log(err)
 				return res.send(500, { error: err })
 
 			}
 			return res.send(doc);
-		})*/
+		})
 	},
+
+	async update(req, res) {
+		const list = await List.updateOne({'_id': req.body._id}, req.body)
+
+		return res.send(list)
+	},
+
+	async delete(req, res) {
+		const list = await List.findOneAndDelete({'_id': req.params.id})
+
+		return res.json(list)
+	}
 }

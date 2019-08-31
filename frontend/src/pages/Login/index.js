@@ -37,7 +37,8 @@ class Login extends Component {
 					password: this.state.password ? this.state.password : null
 				}
 
-				await api.post('/login', user).then(response => {
+				api.post('/login', user)
+				.then((response) => {
 					if(this.state.stayConnected) {
 						Auth.authenticateUser(response.data._id, 'local')
 						// localStorage.setItem("@ceb/userId", response.data._id)
@@ -47,8 +48,8 @@ class Login extends Component {
 					}
 					
 					this.setState({ redirect: true })
-				}).catch(error => {
-					alert('error.response.data')
+				}).catch((error) => {
+					alert('Erro na conexão')
 					// alert('Erro ao logar-se')
 				})
 			}

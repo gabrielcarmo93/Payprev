@@ -25,7 +25,7 @@ class HomeUser extends Component {
 
 	loadLists = async () => {
 		const id = Auth.getToken()
-		const response = await api.get(`list/${id}`)
+		const response = await api.get(`lists/${id}`)
 		this.setState({ lists: response.data })
 	}
 
@@ -45,18 +45,17 @@ class HomeUser extends Component {
 	}
 
 	joinList = (dev, list) => {
-		dev.tags = ''
+		dev.tags = []
 		const data = {
 			dev: dev,
 			id: list._id
 		}
-		
 
 		api.post('joinList', data)
 			.then((response) => {
-				console.log(response)
+				
 			}).catch((error) => {
-				console.log(error.response)
+				console.log(error.response.data.message)
 			})
 	}
 
@@ -64,7 +63,8 @@ class HomeUser extends Component {
 		const showModal = this.state.showModal
 		return (
 			<div style={{height: '100%', width: '100%', padding: '5px 0', display: 'grid', gridTemplateRows: '5fr 1fr'}}>
-				<div style={{border: '1px solid #ccc', borderRadius: '6px', boxSizing: 'border-box', margin: '5px 0', display: 'grid', maxHeight: '100%', overflowY: 'auto'}}>
+				<div style={{border: '1px solid #ccc', borderRadius: '6px', /*boxSizing: 'border-box', */margin: '5px 0', display: 'grid', maxHeight: '100%', overflowY: 'auto', padding: '40px',}}>
+					<h5 style={{fontWeight: 400, textAlign: 'center', letterSpacing: '2px'}}>Lista de Usuários</h5>
 					{
 						this.state.devs.length ?
 							this.state.devs.map(
@@ -78,7 +78,7 @@ class HomeUser extends Component {
 												<Feed.Summary>
 													<Feed.User color="black">{dev.login}</Feed.User>
 													<Feed.Date>
-														<Menu secondary icon='sort down'>
+														<Menu stackable secondary>
 															<Dropdown simple>
 																<Dropdown.Menu>
 																	<Dropdown.Item>
@@ -91,6 +91,7 @@ class HomeUser extends Component {
 																						list => (
 																							<Dropdown.Item
 																								onClick={ () => this.joinList(dev, list) }
+																								key={list._id}
 																							>
 																								{list.name}
 																							</Dropdown.Item>
@@ -118,7 +119,7 @@ class HomeUser extends Component {
 				</div>
 				<div style={{boxSizing: 'border-box', margin: '5px 0'}}>
 					<div style={{border: '1px solid #ccc', borderRadius: '6px', padding: '10px 20px'}}>
-						<h5 style={{fontWeight: '400', textAlign: 'center', letterSpacing: '2px', color: '#777'}}>Listas de Devs</h5>
+						<h5 style={{fontWeight: '400', textAlign: 'center', letterSpacing: '2px', color: '#777'}}>Listas de Projetos</h5>
 						<Modal
 							size={'mini'}
 							closeIcon

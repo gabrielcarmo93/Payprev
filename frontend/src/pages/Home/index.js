@@ -12,7 +12,7 @@ class Home extends Component {
 		user: {},
 	}
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		this.loadUser()
 	}
 

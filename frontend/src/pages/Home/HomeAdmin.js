@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { api, GitApi } from '../../services/api'
-import { Input, Icon, Message, Button } from 'semantic-ui-react'
+import { Input, Icon, Button } from 'semantic-ui-react'
 
 class HomeAdmin extends Component {
 	state = {
@@ -59,7 +59,7 @@ class HomeAdmin extends Component {
 											<img src={this.state.dev.avatar_url} alt={this.state.dev.name}/>
 										</div>
 										<div className="content">
-											<a className="header">{this.state.dev.name}</a>
+											<span href="#" className="header">{this.state.dev.name}</span>
 											<div className="meta">
 												<span className="date">{this.state.dev.location}</span>
 											</div>
@@ -68,10 +68,10 @@ class HomeAdmin extends Component {
 											</div>
 										</div>
 										<div className="extra content">
-											<a title="Repositórios">
+											<span href="#" title="Repositórios">
 											<i className="folder open icon"></i>
 												{this.state.dev.public_repos}
-											</a>
+											</span>
 										</div>
 
 									</div>

@@ -21,6 +21,9 @@ routes.post('/dev', DevController.store)
 routes.get('/lists', ListController.index)
 routes.post('/list', ListController.store)
 routes.post('/joinList', ListController.putUserInList)
-routes.get('/list/:owner', ListController.listsByOwner)
+routes.get('/lists/:owner', ListController.listsByOwner)
+routes.get('/list/:id', ListController.listById)
+routes.put('/list', ListController.update)
+routes.delete('/list/:id', ListController.delete)
 
 module.exports = routes
