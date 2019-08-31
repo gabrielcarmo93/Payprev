@@ -50,7 +50,7 @@ class Login extends Component {
 					this.setState({ redirect: true })
 				}).catch((error) => {
 					alert('Erro na conexão')
-					// alert('Erro ao logar-se')
+					console.log(error)
 				})
 			}
 		} else {

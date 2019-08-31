@@ -15,6 +15,7 @@
     "socket.io": "^2.2.0"
   },
   "scripts": {
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "start": "node index"
   }
 }

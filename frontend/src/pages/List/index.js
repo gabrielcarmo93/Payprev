@@ -122,7 +122,7 @@ export default class List extends Component {
                                                                 dev.tags ? 
                                                                     dev.tags.map(
                                                                         tag => (
-                                                                            <Label color="teal">
+                                                                            <Label color="teal" key={tag}>
                                                                                 {tag}
                                                                                 <Icon
                                                                                     name="delete"
