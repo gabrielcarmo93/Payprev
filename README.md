@@ -1,5 +1,5 @@
 # Payprev
 
-Avaliação técnica para empresa KS Gestão
+Avaliação técnica
 
 Sistema de controle financeiro
